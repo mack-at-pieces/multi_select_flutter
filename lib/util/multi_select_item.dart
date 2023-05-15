@@ -6,6 +6,12 @@ class MultiSelectItem<T> {
   final String label;
   bool selected = false;
   final Widget? icon;
+  final Widget? selectedIcon;
 
-  MultiSelectItem(this.value, this.label, {this.icon});
+  MultiSelectItem(
+    this.value,
+    this.label, {
+    this.icon,
+    this.selectedIcon,
+  });
 }

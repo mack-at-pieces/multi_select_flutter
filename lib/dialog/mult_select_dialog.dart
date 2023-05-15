@@ -1,3 +1,4 @@
+import 'package:dynamic_height_grid_view/dynamic_height_grid_view.dart';
 import 'package:flutter/material.dart';
 import '../util/multi_select_actions.dart';
 import '../util/multi_select_item.dart';
@@ -204,7 +205,7 @@ class _MultiSelectDialogState<T> extends State<MultiSelectDialog<T>> {
             }
           },
           child: Container(
-            padding: const EdgeInsets.all(8.0),
+            padding: const EdgeInsets.only(top: 8.0, right: 12, bottom: 12, left: 12),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(12),
             ),
@@ -215,7 +216,7 @@ class _MultiSelectDialogState<T> extends State<MultiSelectDialog<T>> {
                   mainAxisAlignment: item.icon == null ? MainAxisAlignment.end : MainAxisAlignment.spaceBetween,
                   children: [
                     if (item.icon != null) ...[
-                      item.icon!,
+                      item.selected ? item.selectedIcon ?? item.icon! : item.icon!,
                     ],
                     Checkbox(
                       value: item.selected,
@@ -398,17 +399,14 @@ class _MultiSelectDialogState<T> extends State<MultiSelectDialog<T>> {
                 },
               )
             : widget.listType == MultiSelectListType.GRID
-                ? GridView.builder(
-                    itemCount: _items.length,
-                    itemBuilder: (context, index) {
+                ? DynamicHeightGridView(
+                    builder: (context, index) {
                       return _buildGridItem(_items[index]);
                     },
-                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: 3,
-                      mainAxisSpacing: 8,
-                      crossAxisSpacing: 8,
-                      childAspectRatio: 1.5 / 1,
-                    ),
+                    itemCount: _items.length,
+                    crossAxisCount: 3,
+                    mainAxisSpacing: 8,
+                    crossAxisSpacing: 8,
                   )
                 : SingleChildScrollView(
                     child: Wrap(

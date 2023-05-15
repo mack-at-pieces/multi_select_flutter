@@ -102,6 +102,8 @@ class MultiSelectDialogField<V> extends FormField<List<V>> {
 
   final Color? itemBackground;
 
+  final EdgeInsets? padding;
+
   final AutovalidateMode autovalidateMode;
   final FormFieldValidator<List<V>>? validator;
   final FormFieldSetter<List<V>>? onSaved;
@@ -144,6 +146,7 @@ class MultiSelectDialogField<V> extends FormField<List<V>> {
     this.autovalidateMode = AutovalidateMode.disabled,
     this.key,
     this.itemBackground,
+    this.padding,
   }) : super(
             key: key,
             onSaved: onSaved,
@@ -182,6 +185,7 @@ class MultiSelectDialogField<V> extends FormField<List<V>> {
                 separateSelectedItems: separateSelectedItems,
                 checkColor: checkColor,
                 itemBackground: itemBackground,
+                padding: padding,
                 isDismissible: isDismissible,
               );
               return _MultiSelectDialogFieldView<V>._withState(field, state);
@@ -192,6 +196,7 @@ class MultiSelectDialogField<V> extends FormField<List<V>> {
 class _MultiSelectDialogFieldView<V> extends StatefulWidget {
   final MultiSelectListType? listType;
   final BoxDecoration? decoration;
+  final EdgeInsets? padding;
   final Text? buttonText;
   final Icon? buttonIcon;
   final Widget? title;
@@ -254,6 +259,7 @@ class _MultiSelectDialogFieldView<V> extends StatefulWidget {
     this.separateSelectedItems = false,
     this.checkColor,
     this.itemBackground,
+    this.padding,
     required this.isDismissible,
   });
 
@@ -290,6 +296,7 @@ class _MultiSelectDialogFieldView<V> extends StatefulWidget {
         checkColor = field.checkColor,
         itemBackground = field.itemBackground,
         isDismissible = field.isDismissible,
+        padding = field.padding,
         state = state;
 
   @override
@@ -447,7 +454,7 @@ class __MultiSelectDialogFieldViewState<V> extends State<_MultiSelectDialogField
                       ),
                     )
                 : widget.decoration,
-            padding: const EdgeInsets.all(10),
+            padding: widget.padding ?? const EdgeInsets.all(10),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
