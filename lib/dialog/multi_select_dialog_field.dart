@@ -226,6 +226,7 @@ class _MultiSelectDialogFieldView<V> extends StatefulWidget {
   final Color? checkColor;
   final bool isDismissible;
   final Color? itemBackground;
+  final BorderRadius? borderRadius;
   FormFieldState<List<V>>? state;
 
   _MultiSelectDialogFieldView({
@@ -260,6 +261,7 @@ class _MultiSelectDialogFieldView<V> extends StatefulWidget {
     this.checkColor,
     this.itemBackground,
     this.padding,
+    this.borderRadius,
     required this.isDismissible,
   });
 
@@ -297,6 +299,7 @@ class _MultiSelectDialogFieldView<V> extends StatefulWidget {
         itemBackground = field.itemBackground,
         isDismissible = field.isDismissible,
         padding = field.padding,
+        borderRadius = field.borderRadius,
         state = state;
 
   @override
@@ -429,6 +432,7 @@ class __MultiSelectDialogFieldViewState<V> extends State<_MultiSelectDialogField
       mainAxisAlignment: MainAxisAlignment.start,
       children: <Widget>[
         InkWell(
+          borderRadius: widget.borderRadius,
           onTap: () {
             _showDialog(context);
           },
