@@ -110,6 +110,8 @@ class MultiSelectDialogField<V> extends FormField<List<V>> {
   final GlobalKey<FormFieldState>? key;
   FormFieldState<List<V>>? state;
 
+  final BorderRadius? borderRadius;
+
   MultiSelectDialogField({
     required this.items,
     required this.onConfirm,
@@ -147,6 +149,7 @@ class MultiSelectDialogField<V> extends FormField<List<V>> {
     this.key,
     this.itemBackground,
     this.padding,
+    this.borderRadius,
   }) : super(
             key: key,
             onSaved: onSaved,
@@ -187,6 +190,7 @@ class MultiSelectDialogField<V> extends FormField<List<V>> {
                 itemBackground: itemBackground,
                 padding: padding,
                 isDismissible: isDismissible,
+                borderRadius: borderRadius,
               );
               return _MultiSelectDialogFieldView<V>._withState(field, state);
             });
